@@ -43,6 +43,10 @@ jobs:
           yarn install
           yarn run build
 
+      - shell: bash
+        run: |
+          expr 1 + 1 > output.log
+
       - name: Setup Pages 🛠
         uses: actions/configure-pages@v2
 
