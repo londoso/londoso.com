@@ -45,7 +45,7 @@ jobs:
 
       - shell: bash
         run: |
-          expr 1 + 1 > output.log
+          echo londoso.com > dist/CNAME
 
       - name: Setup Pages 🛠
         uses: actions/configure-pages@v2
