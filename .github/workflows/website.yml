@@ -63,10 +63,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+      # - name: Checkout 🛎️
+      #   uses: actions/checkout@v2
+      #   with:
+      #     persist-credentials: false
 
       - name: Download artifact ⬇️
         uses: actions/download-artifact@v3
