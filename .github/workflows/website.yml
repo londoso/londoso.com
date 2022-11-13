@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
 
     steps:
       - name: Checkout 🛎️
@@ -40,10 +40,10 @@ jobs:
           yarn install
           yarn run build
 
-      - shell: bash
-        name: Add CNAME to build 🕺🏻
-        run: |
-          echo londoso.com > dist/CNAME
+      # - shell: bash
+      #   name: Add CNAME to build 🕺🏻
+      #   run: |
+      #     echo londoso.com > dist/CNAME
 
       - name: Setup Pages 🛠
         uses: actions/configure-pages@v2
