@@ -1,12 +1,7 @@
 module.exports = [
   {
-    title: 'titulo',
-    date: '2022-09-15',
-    url: 'https://londoso.com'
-  },
-  {
-    title: 'titulo2',
-    date: '2022-09-16',
-    url: 'https://londoso.com'
+    title: 'Desplegando modelos analíticos con Sagemaker Serverless',
+    date: '2023-01-20',
+    url: 'https://medium.com/@londoso/desplegando-modelos-anal%C3%ADticos-con-sagemaker-serverless-823068f34136'
   }
 ]
