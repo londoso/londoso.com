@@ -17,5 +17,19 @@ module.exports = [
         url: 'https://www.meetup.com/es/aws-medellin/events/288978341/'
       }
     ]
+  },{
+    title: 'DeepRacer y Aprendizaje Reforzado',
+    date: '2023-05-20',
+    event: 'AWS User Groups Medellín',
+    resources: [
+      {
+        name: 'Slides [ES]',
+        url: 'https://github.com/awsugmed/deepracer-basic-meetup/raw/dc9838228625d3fb12336e361f3b520986a747a1/Meetup%20Deepracer.pptx'
+      },
+      {
+        name: 'MeetUp [ES]',
+        url: 'https://www.meetup.com/es/awsugmed/events/293106044/'
+      }
+    ]
   }
 ]
