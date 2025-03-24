@@ -28,12 +28,12 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
       - name: Install and build 🛠
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
@@ -46,10 +46,10 @@ jobs:
       #     echo londoso.com > dist/CNAME
 
       - name: Setup Pages 🛠
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v4
 
       - name: Upload artifact ⬆️
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'dist'
 
@@ -62,7 +62,7 @@ jobs:
     
     steps:
       - name: Download artifact ⬇️
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: github-pages
         
