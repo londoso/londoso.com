@@ -1,20 +1,32 @@
 module.exports = [
   {
-    title: 'Streaming de datos desde dispositivos IOT hacia Redshift Serveless',
-    date: '2022-11-03',
+    title: '¡Súbete a la nube y únete al AWS re:Invent re:Cap 2024 Medellín! - Demo Aurora DSQL',
+    date: '2025-02-18',
     event: 'AWS User Groups Medellín',
     resources: [
       {
+        name: 'Repo [ES]',
+        url: 'https://github.com/londoso/demo-dsql'
+      }
+    ]
+  },{
+    title: 'DAT101 - Bases de Datos Vectoriales y su aporte a la IA Generativa',
+    date: '2024-07-18',
+    event: 'AWS Summit - Bogotá 2024',
+    resources: [
+      {
         name: 'Slides [ES]',
-        url: 'https://github.com/aws-medellin/data-streaming-aws-iot-redshift/raw/1223491bb2314afcad0134c7fff32e35689cc113/AWS%20UG%20Medellin%20-%20Nov%202022.pptx'
-      },
+        url: 'https://d1.awsstatic.com/events/Summits/bogsummit24/DAT101_BasesDatos_V1_BOGSummit_20240718.pdf'
+      }
+    ]
+  },{
+    title: 'Workshop DeepRacer',
+    date: '2023-08-02',
+    event: 'AWS Community Day Colombia 2023',
+    resources: [
       {
-        name: 'Code Repo',
-        url: 'https://github.com/aws-medellin/data-streaming-aws-iot-redshift/'
-      },
-      {
-        name: 'MeetUp [ES]',
-        url: 'https://www.meetup.com/es/aws-medellin/events/288978341/'
+        name: 'Meetup [ES]',
+        url: 'https://www.meetup.com/awsugmed/events/295158122/'
       }
     ]
   },{
@@ -32,33 +44,21 @@ module.exports = [
       }
     ]
   },{
-    title: 'Workshop DeepRacer',
-    date: '2023-08-02',
-    event: 'AWS Community Day Colombia 2023',
-    resources: [
-      {
-        name: 'Meetup [ES]',
-        url: 'https://www.meetup.com/awsugmed/events/295158122/'
-      }
-    ]
-  },{
-    title: 'DAT101 - Bases de Datos Vectoriales y su aporte a la IA Generativa',
-    date: '2024-07-18',
-    event: 'AWS Summit - Bogotá 2024',
-    resources: [
-      {
-        name: 'Slides [ES]',
-        url: 'https://d1.awsstatic.com/events/Summits/bogsummit24/DAT101_BasesDatos_V1_BOGSummit_20240718.pdf'
-      }
-    ]
-  },{
-    title: '¡Súbete a la nube y únete al AWS re:Invent re:Cap 2024 Medellín! - Demo Aurora DSQL',
-    date: '2025-02-18',
+    title: 'Streaming de datos desde dispositivos IOT hacia Redshift Serveless',
+    date: '2022-11-03',
     event: 'AWS User Groups Medellín',
     resources: [
       {
-        name: 'Repo [ES]',
-        url: 'https://github.com/londoso/demo-dsql'
+        name: 'Slides [ES]',
+        url: 'https://github.com/aws-medellin/data-streaming-aws-iot-redshift/raw/1223491bb2314afcad0134c7fff32e35689cc113/AWS%20UG%20Medellin%20-%20Nov%202022.pptx'
+      },
+      {
+        name: 'Code Repo',
+        url: 'https://github.com/aws-medellin/data-streaming-aws-iot-redshift/'
+      },
+      {
+        name: 'MeetUp [ES]',
+        url: 'https://www.meetup.com/es/aws-medellin/events/288978341/'
       }
     ]
   }
