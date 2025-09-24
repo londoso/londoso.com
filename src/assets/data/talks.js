@@ -21,6 +21,19 @@ module.exports = [
     ]
   },{
     title: 'Workshop DeepRacer',
+    date: '2023-09-23',
+    event: 'AWS UG Perú Conf 2023',
+    resources: [
+      {
+        name: 'Eventbrite',
+        url: 'https://www.eventbrite.com/e/aws-ug-peru-conf-2023-tickets-616233339507'
+      },{
+        name: 'Badge',
+        url: 'https://badgr.com/public/assertions/RMFQsBQwQXWFB5LsS8NLtw?identity__email=londoso%40gmail.com'
+      }
+    ]
+  },{
+    title: 'Workshop DeepRacer',
     date: '2023-08-02',
     event: 'AWS Community Day Colombia 2023',
     resources: [
