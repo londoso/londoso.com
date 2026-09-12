@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://londoso.com/sitemap.xml

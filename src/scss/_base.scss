@@ -21,7 +21,7 @@ body {
     linear-gradient(180deg, $void 0%, $night 100%);
   background-attachment: fixed;
   color: $ink;
-  font-family: 'Rajdhani', system-ui, sans-serif;
+  font-family: 'Rajdhani', 'Rajdhani Fallback', system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.6;
   letter-spacing: 0.2px;
@@ -60,7 +60,7 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-family: 'Orbitron', 'Orbitron Fallback', 'Rajdhani', sans-serif;
   letter-spacing: 1px;
 }
 

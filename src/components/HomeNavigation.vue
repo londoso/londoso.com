@@ -115,7 +115,7 @@ function setLocale (value) {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-weight: 800;
     letter-spacing: 2px;
     color: $ink;
@@ -199,7 +199,7 @@ function setLocale (value) {
   }
 
   &__link {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -218,7 +218,7 @@ function setLocale (value) {
 
   &__locale-btn {
     padding: 4px 6px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-size: 12px;
     letter-spacing: 1px;
     color: $muted;

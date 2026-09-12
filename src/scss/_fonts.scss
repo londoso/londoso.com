@@ -1,0 +1,62 @@
+// Self-hosted fonts (latin subset only) to avoid render-blocking
+// third-party requests and improve PageSpeed / privacy.
+
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('@/assets/fonts/orbitron-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@/assets/fonts/rajdhani-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@/assets/fonts/rajdhani-500-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('@/assets/fonts/rajdhani-600-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@/assets/fonts/rajdhani-700-latin.woff2') format('woff2');
+}
+
+// Fallback fonts with adjusted metrics to prevent layout shift (CLS) when
+// the web fonts swap in. Metrics approximate the target fonts over Arial.
+@font-face {
+  font-family: 'Rajdhani Fallback';
+  src: local('Arial');
+  size-adjust: 95%;
+  ascent-override: 95%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Orbitron Fallback';
+  src: local('Arial');
+  size-adjust: 108%;
+  ascent-override: 88%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}

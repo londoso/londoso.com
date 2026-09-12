@@ -36,7 +36,7 @@ const { t } = useI18n()
   }
 
   &__user {
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-weight: 700;
     @include neon-text($time-amber, 0.7);
   }

@@ -7,11 +7,18 @@
       {{ t('common.about') }}
     </h2>
     <div class="about__grid reveal">
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <p
-        class="about__bio"
-        v-html="t('about.bio')"
-      />
+      <div class="about__bio">
+        <p
+          v-for="(paragraph, i) in tm('about.bioParagraphs')"
+          :key="i"
+        >
+          {{ paragraph }}
+        </p>
+        <p class="about__interests">
+          <b>{{ t('about.interestsLabel') }}</b>
+          {{ tm('about.interests').join(', ') }}
+        </p>
+      </div>
       <ul class="about__info">
         <li class="about__info-item">
           <span class="about__info-label">{{ t('about.name') }}</span>
@@ -32,7 +39,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+const { t, tm } = useI18n()
 </script>
 
 <style lang="scss">
@@ -54,12 +61,18 @@ const { t } = useI18n()
   }
 
   &__bio {
-    margin: 0;
     font-size: 17px;
     line-height: 1.75;
     color: $ink;
 
+    p { margin: 0 0 14px; }
+    p:last-child { margin-bottom: 0; }
+
     b { @include neon-text($flux-cyan, 0.5); }
+  }
+
+  &__interests {
+    margin-top: 18px;
   }
 
   &__info {
@@ -83,7 +96,7 @@ const { t } = useI18n()
   &__info-label {
     display: block;
     margin-bottom: 2px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;

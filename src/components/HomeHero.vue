@@ -4,7 +4,7 @@
     class="hero"
   >
     <div class="hero__inner">
-      <div class="hero__text reveal">
+      <div class="hero__text">
         <p class="hero__hello">
           {{ t('common.heroMessage') }}
         </p>
@@ -37,13 +37,26 @@
         </div>
       </div>
 
-      <div class="hero__portrait reveal">
+      <div class="hero__portrait">
         <div class="hero__portrait-ring">
-          <img
-            class="hero__image"
-            src="@/assets/images/hero.jpg"
-            alt="Anderson Londoño"
-          >
+          <picture>
+            <source
+              :srcset="`${heroAvif400} 400w, ${heroAvif600} 600w`"
+              sizes="(min-width: 768px) 300px, 220px"
+              type="image/avif"
+            >
+            <img
+              class="hero__image"
+              :src="heroJpg400"
+              :srcset="`${heroJpg400} 400w, ${heroJpg600} 600w`"
+              sizes="(min-width: 768px) 300px, 220px"
+              alt="Anderson Londoño"
+              width="600"
+              height="600"
+              fetchpriority="high"
+              decoding="async"
+            >
+          </picture>
         </div>
         <span class="hero__flux">1.21 GW</span>
       </div>
@@ -54,6 +67,10 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import heroAvif400 from '@/assets/images/hero-400.avif'
+import heroAvif600 from '@/assets/images/hero-600.avif'
+import heroJpg400 from '@/assets/images/hero-400.jpg'
+import heroJpg600 from '@/assets/images/hero-600.jpg'
 
 const { t } = useI18n()
 
@@ -102,7 +119,7 @@ const today = computed(() => {
 
   &__hello {
     margin: 0 0 6px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-size: 14px;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -177,7 +194,7 @@ const today = computed(() => {
     right: -6px;
     bottom: 12px;
     padding: 6px 12px;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 1px;
@@ -206,7 +223,7 @@ const today = computed(() => {
 
   &__value {
     display: block;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'Orbitron', 'Orbitron Fallback', sans-serif;
     font-size: 18px;
     font-weight: 800;
     letter-spacing: 1px;
