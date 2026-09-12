@@ -1,81 +1,93 @@
 <template>
-  <section class="about" id="about">
-    <h2 class="about__title wow fadeIn">{{ $t('common.about') }}</h2>
-    <div class="about__container wow fadeIn">
-      <p class="about__description" v-html="$t('about.bio')" />
+  <section
+    id="about"
+    class="about"
+  >
+    <h2 class="about__title reveal">
+      {{ t('common.about') }}
+    </h2>
+    <div class="about__grid reveal">
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <p
+        class="about__bio"
+        v-html="t('about.bio')"
+      />
       <ul class="about__info">
         <li class="about__info-item">
-          <span class="about__info-title">{{ $t('about.name') }}</span>
-          <br />
+          <span class="about__info-label">{{ t('about.name') }}</span>
           Anderson Londoño
         </li>
         <li class="about__info-item">
-          <span class="about__info-title">{{ $t('about.email') }}</span>
-          <br />
-          londoso@gmail.com
+          <span class="about__info-label">{{ t('about.email') }}</span>
+          <a href="mailto:londoso@gmail.com">londoso@gmail.com</a>
         </li>
         <li class="about__info-item">
-          <span class="about__info-title">{{ $t('about.location') }}</span>
-          <br />
-          Medellín - Colombia
+          <span class="about__info-label">{{ t('about.location') }}</span>
+          Medellín — Colombia
         </li>
       </ul>
     </div>
   </section>
 </template>
 
+<script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+</script>
+
 <style lang="scss">
-@import '../scss/variables';
-@import '../scss/mixins';
-@import '../scss/typography';
+@import '@/scss/variables';
+@import '@/scss/mixins';
+@import '@/scss/typography';
 
 .about {
-  &__container {
-    display: flex;
-    flex-direction: column;
+  &__title { @extend %section-title; }
+
+  &__grid {
+    display: grid;
+    gap: 24px;
 
     @include from('lg') {
-      flex-direction: row;
-      transform: translateX(80px);
+      grid-template-columns: 1.6fr 1fr;
+      align-items: start;
     }
   }
 
-  &__description {
-    font-size: 16px;
-    line-height: 22px;
+  &__bio {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.75;
+    color: $ink;
 
-    @include from('lg') {
-      padding-right: 20px;
-      width: 65%;
-    }
+    b { @include neon-text($flux-cyan, 0.5); }
   }
 
   &__info {
-    background: $mandy;
-    color: $white;
-    margin: 0;
-    padding: 30px 20px;
-
-    @include from('lg') {
-      width: 35%;
-    }
+    padding: 24px;
+    background: linear-gradient(160deg, rgba($panel, 0.9), rgba($night, 0.9));
+    border-radius: $radius;
+    @include neon-box($flux-blue, 0.5);
   }
 
   &__info-item {
-    word-break: break-word;
+    font-size: 16px;
+    color: $ink;
 
     &:not(:last-child) {
-      margin-bottom: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba($flux-cyan, 0.15);
     }
   }
 
-  &__info-title {
-    font-size: 11px;
+  &__info-label {
+    display: block;
+    margin-bottom: 2px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-  }
-
-  &__title {
-    @extend %section-title;
+    color: $time-amber;
   }
 }
 </style>

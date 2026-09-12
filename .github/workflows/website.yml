@@ -22,9 +22,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
 
     steps:
       - name: Checkout 🛎️
@@ -32,13 +29,16 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and build 🛠
+      - name: Setup Node ⚙️
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: |
-          yarn install
-          yarn run build
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install and build 🛠
+        run: |
+          npm ci
+          npm run build
 
       # - shell: bash
       #   name: Add CNAME to build 🕺🏻
@@ -59,16 +59,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Download artifact ⬇️
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-        
-      - name: Display tar file content 📂
-        run: tar -tf artifact.tar
-          
       - name: Deploy to GitHub Pages 🚀
         id: deployment
         uses: actions/deploy-pages@v4

@@ -1,96 +1,82 @@
 <template>
-  <section class="contact" id="contact">
-    <h2 class="contact__title wow fadeIn">{{ $t('common.contact') }}</h2>
-
-    <ul class="contact__list">
+  <section
+    id="contact"
+    class="contact"
+  >
+    <h2 class="contact__title reveal">
+      {{ t('common.contact') }}
+    </h2>
+    <ul class="contact__list reveal">
       <li
         v-for="item in social"
         :key="item.url"
-        class="contact__item wow fadeIn"
+        class="contact__item"
       >
-        <a :href="item.url" target="_blank" rel="noopener noreferrer">
-          <i :class="cssSocialClass(item.name)"></i
-        ></a>
+        <a
+          :href="item.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="item.name"
+        >
+          <i :class="['fab', `fa-${item.name}`, 'contact__icon']" />
+        </a>
       </li>
     </ul>
   </section>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      social: [
-        {
-          name: 'instagram',
-          url: 'https://www.instagram.com/londoso'
-        },
-        {
-          name: 'twitter',
-          url: 'https://www.twitter.com/londoso'
-        },
-        {
-          name: 'github',
-          url: 'https://www.github.com/londoso'
-        },
-        {
-          name: 'linkedin',
-          url: 'https://www.linkedin.com/in/londoso'
-        }
-      ]
-    }
-  },
-  methods: {
-    cssSocialClass (item) {
-      return `contact__icon fab fa-${item}`
-    }
-  }
-}
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+const social = [
+  { name: 'instagram', url: 'https://www.instagram.com/londoso' },
+  { name: 'twitter', url: 'https://www.twitter.com/londoso' },
+  { name: 'github', url: 'https://www.github.com/londoso' },
+  { name: 'linkedin', url: 'https://www.linkedin.com/in/londoso' }
+]
 </script>
 
 <style lang="scss">
-@import '../scss/variables';
-@import '../scss/typography';
+@import '@/scss/variables';
+@import '@/scss/mixins';
+@import '@/scss/typography';
 
 .contact {
-  &__coffee {
-    &-img {
-      height: 28px;
-      width: 101px;
+  &__title { @extend %section-title; }
+
+  &__list {
+    display: flex;
+    gap: 18px;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: rgba($panel, 0.7);
+    border-radius: 50%;
+    border: 1px solid rgba($flux-cyan, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba($flux-cyan, 0.7);
+      box-shadow: 0 0 22px rgba($flux-cyan, 0.55);
     }
   }
 
   &__icon {
-    color: $mandy;
-    font-size: 28px;
-    transition: 0.2s ease-in;
+    font-size: 24px;
+    color: $flux-cyan;
+    transition: color 0.2s ease;
 
-    &:hover {
-      color: $silver;
+    .contact__item:hover & {
+      @include neon-text($flux-cyan, 1);
     }
-  }
-
-  &__item {
-    display: inline-block;
-    transition: transform 0.1s ease-in;
-
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
-
-    &:hover{
-      transform: scale(1.05);
-    }
-  }
-
-  &__list {
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  &__title {
-    @extend %section-title;
   }
 }
 </style>

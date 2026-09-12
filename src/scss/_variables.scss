@@ -1,13 +1,32 @@
-// breakpoints
+// ── Breakpoints ───────────────────────────────
 $small-bp: 375px;
 $medium-bp: 768px;
 $large-bp: 1024px;
-$xlarge-bp: 10240px;
+$xlarge-bp: 1440px;
 
-// colors
-$black: #000;
-$white: #fef9ff;
+// ── Back to the Future palette ────────────────
+// Night in Hill Valley + the glow of the time circuits.
+$void: #05060a; // deep space background
+$night: #0b0f1a; // panel background
+$panel: #121826; // raised surfaces
+$steel: #1c2436; // borders / dividers
 
-$pot-pourri: #D6E4E5;
-$silver: #EFF5F5;
-$mandy: #497174;
+$flux-cyan: #35e1ff; // flux capacitor blue
+$flux-blue: #2b6dff; // electric blue
+$plutonium: #b98bff; // plutonium violet
+$time-amber: #ff9f1c; // "destination time" amber (LED)
+$time-red: #ff2e4d; // "present time" red LED
+$time-green: #39ff88; // "last departed" green LED
+
+$ink: #e8f1ff; // primary text
+$muted: #8ea3c4; // secondary text
+$white: #ffffff;
+$black: #000000;
+
+// Accent used across the theme (flux glow)
+$accent: $flux-cyan;
+$accent-warm: $time-amber;
+
+// ── Layout ────────────────────────────────────
+$radius: 10px;
+$maxw: 1120px;

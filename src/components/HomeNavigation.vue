@@ -1,206 +1,236 @@
 <template>
-  <div class="nav" :class="{ 'nav--active': isActive }">
-    <div class="nav__toggle" v-on:click="toggleNav()">
-      <div class="nav__toggle-line"></div>
-    </div>
-    <nav class="nav__menu wow fadeIn">
-      <ul class="nav__menu-list">
-        <li class="nav__name">
-          <a class="nav__item-cta" href="#hero">Anderson Londoño</a>
-        </li>
-        <li class="nav__item">
-          <a class="nav__item-cta" v-on:click="toggleNav()" href="#about">{{
-            $t('common.about')
-          }}</a>
-        </li>
-        <li class="nav__item">
-          <a class="nav__item-cta" v-on:click="toggleNav()" href="#blog">{{
-            $t('common.blogs')
-          }}</a>
-        </li>
-        <li class="nav__item">
-          <a class="nav__item-cta" v-on:click="toggleNav()" href="#talks">{{
-            $t('common.talks')
-          }}</a>
-        </li>
-        <li class="nav__item">
-          <a class="nav__item-cta" v-on:click="toggleNav()" href="#contact">{{
-            $t('common.contact')
-          }}</a>
-        </li>
-        <li class="nav__item">
-          <button class="nav__locale-cta" v-on:click="changeLocale('en')">
-            en
-          </button>
-          /
-          <button class="nav__locale-cta" v-on:click="changeLocale('es')">
-            es
-          </button>
+  <header
+    class="nav"
+    :class="{ 'nav--open': isOpen }"
+  >
+    <a
+      class="nav__brand"
+      href="#hero"
+      @click="close"
+    >
+      <span class="nav__bolt">⚡</span>
+      <span class="nav__brand-text">A. Londoño</span>
+    </a>
+
+    <button
+      class="nav__toggle"
+      :aria-expanded="isOpen"
+      aria-label="Menu"
+      @click="toggle"
+    >
+      <span class="nav__toggle-bar" />
+      <span class="nav__toggle-bar" />
+      <span class="nav__toggle-bar" />
+    </button>
+
+    <nav class="nav__menu">
+      <ul class="nav__list">
+        <li
+          v-for="link in links"
+          :key="link.hash"
+          class="nav__item"
+        >
+          <a
+            class="nav__link"
+            :href="link.hash"
+            @click="close"
+          >
+            {{ t(link.key) }}
+          </a>
         </li>
       </ul>
+
+      <div class="nav__locale">
+        <button
+          class="nav__locale-btn"
+          :class="{ 'is-active': locale === 'en' }"
+          @click="setLocale('en')"
+        >
+          EN
+        </button>
+        <span class="nav__locale-sep">/</span>
+        <button
+          class="nav__locale-btn"
+          :class="{ 'is-active': locale === 'es' }"
+          @click="setLocale('es')"
+        >
+          ES
+        </button>
+      </div>
     </nav>
-  </div>
+  </header>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      isActive: false
-    }
-  },
-  methods: {
-    toggleNav () {
-      this.isActive = !this.isActive
+<script setup>
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-      const isMobile = document.documentElement.clientWidth < 1024
+const { t, locale } = useI18n()
+const isOpen = ref(false)
 
-      if (this.isActive && isMobile) {
-        document.documentElement.style.overflow = 'hidden'
-      } else {
-        document.documentElement.style.overflow = 'auto'
-      }
-    },
-    changeLocale (locale) {
-      this.$i18n.locale = locale
-    }
-  }
+const links = [
+  { key: 'common.about', hash: '#about' },
+  { key: 'common.blogs', hash: '#blog' },
+  { key: 'common.talks', hash: '#talks' },
+  { key: 'common.contact', hash: '#contact' }
+]
+
+function toggle () {
+  isOpen.value = !isOpen.value
+  const isMobile = document.documentElement.clientWidth < 1024
+  document.documentElement.style.overflow =
+    isOpen.value && isMobile ? 'hidden' : 'auto'
+}
+
+function close () {
+  isOpen.value = false
+  document.documentElement.style.overflow = 'auto'
+}
+
+function setLocale (value) {
+  locale.value = value
 }
 </script>
 
 <style lang="scss">
-@import '../scss/variables';
-@import '../scss/mixins';
+@import '@/scss/variables';
+@import '@/scss/mixins';
 
 .nav {
-  position: absolute;
+  position: fixed;
   top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 5%;
+  background: rgba($void, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba($flux-cyan, 0.25);
+  box-shadow: 0 1px 22px rgba($flux-blue, 0.25);
 
-  @include from('lg') {
-    position: relative;
-  }
-
-  &--active {
-    .nav__menu {
-      height: 100vh;
-    }
-
-    .nav__toggle {
-      &::before {
-        top: 20px;
-        transform: rotate(45deg);
-      }
-
-      &::after {
-        top: 20px;
-        transform: rotate(-45deg);
-      }
-    }
-
-    .nav__toggle-line {
-      display: none;
-    }
-  }
-
-  &__item {
-    cursor: pointer;
-    font-size: 18px;
-    margin: 15px 0;
-    text-align: center;
-
-    @include from('lg') {
-      text-align: left;
-    }
-
-    &:hover {
-      .nav__item-cta {
-        color: $mandy;
-      }
-    }
-  }
-
-  &__item-cta {
-    color: $black;
-  }
-
-  &__locale-cta {
-    background: none;
-    border: none;
-
-    &:hover {
-      color: $mandy;
-    }
-  }
-
-  &__menu {
+  &__brand {
+    display: inline-flex;
     align-items: center;
-    background: $white;
-    display: flex;
-    height: 0;
-    justify-content: center;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    transition: all 0.3s ease-in;
-    width: 100vw;
-    z-index: 2;
+    gap: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: $ink;
 
-    @include from('lg') {
-      height: 100vh;
-      max-width: 600px;
-      position: relative;
-      width: auto;
-    }
+    &:hover { color: $ink; }
   }
 
-  &__name {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    text-decoration: underline;
+  &__bolt {
+    @include neon-text($time-amber, 1);
+    font-size: 20px;
+  }
+
+  &__brand-text {
+    @include neon-text($flux-cyan, 0.4);
   }
 
   &__toggle {
-    background: $white;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: none;
     cursor: pointer;
-    height: 50px;
-    padding: 10px;
-    position: relative;
-    transition: all 0.2s ease-in;
-    width: 50px;
-    z-index: 3;
 
-    &::before {
-      top: 10px;
-    }
+    @include from('lg') { display: none; }
+  }
 
-    &::after {
-      bottom: 10px;
-    }
+  &__toggle-bar {
+    width: 26px;
+    height: 2px;
+    background: $flux-cyan;
+    box-shadow: 0 0 8px rgba($flux-cyan, 0.9);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
 
-    &::after,
-    &::before {
-      content: '';
-      background: $black;
-      height: 3px;
-      left: 10px;
-      position: absolute;
-      transition: all 0.2s ease-in;
-      width: 30px;
-    }
+  &--open {
+    .nav__toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__toggle-bar:nth-child(2) { opacity: 0; }
+    .nav__toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+
+  &__menu {
+    position: fixed;
+    inset: 62px 0 auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+    padding: 40px 0;
+    background: rgba($night, 0.97);
+    border-bottom: 1px solid rgba($flux-cyan, 0.2);
+    transform: translateY(-140%);
+    transition: transform 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
 
     @include from('lg') {
-      display: none;
+      position: static;
+      flex-direction: row;
+      gap: 34px;
+      padding: 0;
+      background: none;
+      border: none;
+      transform: none;
     }
   }
 
-  &__toggle-line {
-    background: $black;
-    height: 3px;
-    position: absolute;
-    top: 23.5px;
-    width: 30px;
+  &--open .nav__menu {
+    transform: translateY(0);
   }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+
+    @include from('lg') {
+      flex-direction: row;
+      gap: 30px;
+    }
+  }
+
+  &__link {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $muted;
+
+    &:hover { @include neon-text($flux-cyan, 0.9); }
+  }
+
+  &__locale {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $muted;
+  }
+
+  &__locale-btn {
+    padding: 4px 6px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: $muted;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &.is-active,
+    &:hover { @include neon-text($time-amber, 0.9); }
+  }
+
+  &__locale-sep { opacity: 0.4; }
 }
 </style>

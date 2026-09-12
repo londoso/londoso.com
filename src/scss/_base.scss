@@ -1,31 +1,76 @@
-*, ::after, ::before {
+// Minimal reset (replaces normalize.css)
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: $white;
-  font-family: 'Archivo', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background-color: $void;
+  background-image:
+    radial-gradient(circle at 15% -10%, rgba($flux-blue, 0.22), transparent 45%),
+    radial-gradient(circle at 85% 0%, rgba($plutonium, 0.16), transparent 40%),
+    radial-gradient(circle at 50% 120%, rgba($flux-cyan, 0.14), transparent 55%),
+    linear-gradient(180deg, $void 0%, $night 100%);
+  background-attachment: fixed;
+  color: $ink;
+  font-family: 'Rajdhani', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  overflow-x: hidden;
+}
+
+// Subtle animated scanlines overlay (CRT / time-circuit vibe)
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.06) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
 }
 
 a {
+  color: $accent;
   text-decoration: none;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+
+  &:hover {
+    @include neon-text($accent, 0.9);
+  }
 }
 
 h1,
 h2,
 h3 {
   margin: 0;
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  letter-spacing: 1px;
 }
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 ul {
+  margin: 0;
   padding: 0;
 }
 
@@ -33,10 +78,38 @@ li {
   list-style-type: none;
 }
 
+button {
+  font-family: inherit;
+}
+
 section {
-  margin: 60px 0;
+  margin: 72px 0;
 
   @include from('lg') {
-    margin: 80px 0;
+    margin: 110px 0;
   }
+}
+
+// ── Reveal-on-scroll (replaces wow.js) ─────────
+// El contenido es visible por defecto. Solo cuando JS "arma" la animación
+// (clase .reveal-armed) se oculta, y se revela al entrar en viewport.
+.reveal {
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal-armed {
+  opacity: 0;
+  transform: translateY(28px);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal,
+  .reveal-armed { opacity: 1; transform: none; transition: none; }
+  body::before { display: none; }
 }

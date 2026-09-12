@@ -1,0 +1,82 @@
+@import '@/scss/variables';
+@import '@/scss/mixins';
+@import '@/scss/typography';
+
+.cards {
+  &__title { @extend %section-title; }
+
+  &__list {
+    display: grid;
+    gap: 16px;
+
+    @include from('md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__more {
+    @extend %cta;
+    margin-top: 26px;
+  }
+}
+
+.card {
+  position: relative;
+  padding: 22px 24px;
+  background: linear-gradient(160deg, rgba($panel, 0.85), rgba($night, 0.9));
+  border: 1px solid rgba($flux-cyan, 0.14);
+  border-radius: $radius;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, $flux-cyan, $flux-blue);
+    box-shadow: 0 0 14px rgba($flux-cyan, 0.8);
+    opacity: 0.7;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($flux-cyan, 0.5);
+    box-shadow: 0 10px 30px rgba($flux-blue, 0.35);
+  }
+
+  &__date {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $time-amber;
+  }
+
+  &__title {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: $ink;
+
+    a:hover { @include neon-text($flux-cyan, 0.9); }
+  }
+
+  &__resources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-top: 14px;
+  }
+
+  &__resource {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $flux-cyan;
+  }
+}

@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     title: '¡Súbete a la nube y únete al AWS re:Invent re:Cap 2024 Medellín! - Demo Aurora DSQL',
     date: '2025-02-18',
@@ -9,7 +9,7 @@ module.exports = [
         url: 'https://github.com/londoso/demo-dsql'
       }
     ]
-  },{
+  }, {
     title: 'DAT101 - Bases de Datos Vectoriales y su aporte a la IA Generativa',
     date: '2024-07-18',
     event: 'AWS Summit - Bogotá 2024',
@@ -19,7 +19,7 @@ module.exports = [
         url: 'https://d1.awsstatic.com/events/Summits/bogsummit24/DAT101_BasesDatos_V1_BOGSummit_20240718.pdf'
       }
     ]
-  },{
+  }, {
     title: 'Workshop DeepRacer',
     date: '2023-09-23',
     event: 'AWS UG Perú Conf 2023',
@@ -42,7 +42,7 @@ module.exports = [
         url: 'https://www.meetup.com/awsugmed/events/295158122/'
       }
     ]
-  },{
+  }, {
     title: 'DeepRacer y Aprendizaje Reforzado',
     date: '2023-05-20',
     event: 'AWS User Groups Medellín',
@@ -56,7 +56,7 @@ module.exports = [
         url: 'https://www.meetup.com/es/awsugmed/events/293106044/'
       }
     ]
-  },{
+  }, {
     title: 'Streaming de datos desde dispositivos IOT hacia Redshift Serveless',
     date: '2022-11-03',
     event: 'AWS User Groups Medellín',

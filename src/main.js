@@ -1,14 +1,12 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-
 import i18n from '@/i18n'
+
+import '@fortawesome/fontawesome-free/css/all.min.css'
 import '@/scss/main.scss'
 
-Vue.config.productionTip = false
-
-new Vue({
-  i18n,
-  router,
-  render: (h) => h(App)
-}).$mount('#app')
+createApp(App)
+  .use(router)
+  .use(i18n)
+  .mount('#app')
